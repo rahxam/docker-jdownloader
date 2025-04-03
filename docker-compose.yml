@@ -1,0 +1,29 @@
+services:
+  jdownloader:
+    networks:
+      - traefik
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.stack.network=traefik"  
+
+        - "traefik.http.routers.jdownloader.rule=Host(`jdownloader.hartig.es`)"
+        - "traefik.http.routers.jdownloader.entrypoints=https"
+        - "traefik.http.routers.jdownloader.tls=true"
+
+        - "traefik.http.services.jdownloader.loadbalancer.server.port=5800"
+        
+        - "traefik.constraint=proxy-public"
+        
+        - "traefik.http.routers.jdownloader.middlewares=authentik@swarm"
+    image: jlesage/jdownloader-2
+    # ports:
+    #   - "5800:5800"
+    volumes:
+      - "/home/docker/mnt/fast/jdownloader/config:/config:rw"
+      - "/home/docker/mnt/fast/jdownloader/downloads:/output:rw"
+
+networks:
+  traefik:
+    external: true
