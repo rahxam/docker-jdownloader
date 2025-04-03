@@ -21,9 +21,12 @@ services:
     # ports:
     #   - "5800:5800"
     volumes:
-      - "/home/docker/mnt/fast/jdownloader/config:/config:rw"
-      - "/home/docker/mnt/fast/jdownloader/downloads:/output:rw"
+      - "config:/config:rw"
+      - "/home/docker/mnt/fast/jdownloader:/output:rw"
 
 networks:
   traefik:
     external: true
+
+volumes:
+  config:
