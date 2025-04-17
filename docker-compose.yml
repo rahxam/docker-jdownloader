@@ -22,7 +22,8 @@ services:
     #   - "5800:5800"
     volumes:
       - "config:/config:rw"
-      - "/home/docker/mnt/fast/jdownloader:/output:rw"
+      - "/home/docker/mnt/slow/downloads/jdownloader:/output:rw"
+      - "/home/docker/mnt/slow/media:/output:rw"
 
 networks:
   traefik:
