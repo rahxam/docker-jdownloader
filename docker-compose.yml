@@ -23,7 +23,7 @@ services:
     volumes:
       - "config:/config:rw"
       - "/home/docker/mnt/slow/downloads/jdownloader:/output:rw"
-      - "/home/docker/mnt/slow/media:/output:rw"
+      - "/home/docker/mnt/slow/media:/media:rw"
 
 networks:
   traefik:
